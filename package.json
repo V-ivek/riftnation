@@ -1,0 +1,18 @@
+{
+  "name": "riftnation",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Riftnation — Riftbound TCG marketplace (scaffolding)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "policy:sync": "agent-policy sync",
+    "policy:check": "agent-policy sync --check",
+    "policy:validate": "agent-policy validate"
+  },
+  "devDependencies": {
+    "@47nation/agent-policy": "^0.1.0"
+  }
+}
