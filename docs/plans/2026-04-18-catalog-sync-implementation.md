@@ -17,6 +17,13 @@
 
 **YAGNI:** this plan deliberately does not ship the `CatalogQueryService`, HTTP admin controllers, domain-event subscribers, or full-text search. Those are future work for marketplace contexts.
 
+## Context the plan already assumes (added after plan was written)
+
+- `@47nation/agent-policy` is already installed as a dev dep; `agent-policy.yaml`, generated `AGENTS.md` / `CLAUDE.md` / `.github/copilot-instructions.md`, and a `commit-msg` hook are already in place. **Every commit must end with an `Assisted-by: claude:opus-4-7` footer** (or `Assisted-by: n/a` for human-only commits). The hook rejects commits without one.
+- `package.json` already exists with `@47nation/agent-policy` as a devDependency and scripts `policy:sync`, `policy:check`, `policy:validate`. **Task 0.1 must extend this file in place, not overwrite it** — keep the existing scripts and devDependency, add the new NestJS deps alongside.
+- `.gitignore` already exists and covers `node_modules/`, `dist/`, `coverage/`, `.env*`. Extend it only if the new tooling needs it.
+- `docs/prompts/` contains the user's RFC and related prompt files. Do not modify or move them. The addendum lives in `docs/plans/` and is the canonical source for the 8 extra fields.
+
 ---
 
 ## Phase 0 — Repository bootstrap
