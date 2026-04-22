@@ -1,0 +1,42 @@
+name: sync-catalog
+
+on:
+  schedule:
+    # 07:00 UTC = 11:00 Asia/Dubai (GST, no DST)
+    - cron: '0 7 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: sync-catalog
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI_SKIP_PLAYWRIGHT: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: npm run migrate
+
+      - name: Sync catalog
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          RIFTBOUND_GALLERY_URL: https://riftbound.leagueoflegends.com/en-us/card-gallery/
+        run: npm run sync:catalog
