@@ -9,7 +9,7 @@ export function databaseOptionsFromEnv(): DataSourceOptions {
     type: 'postgres',
     url,
     entities: [SetOrmEntity, CardOrmEntity],
-    migrations: ['src/catalog/infrastructure/persistence/migrations/*.ts'],
+    migrations: ['src/catalog/infrastructure/persistence/migrations/[0-9]*.ts'],
     migrationsTableName: 'typeorm_migrations',
     synchronize: false,
   };
