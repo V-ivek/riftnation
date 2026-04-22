@@ -2,17 +2,48 @@
   "name": "riftnation",
   "version": "0.0.0",
   "private": true,
-  "description": "Riftnation — Riftbound TCG marketplace (scaffolding)",
+  "description": "Riftnation — Riftbound TCG marketplace",
   "license": "MIT",
   "engines": {
     "node": ">=20.0.0"
   },
   "scripts": {
+    "build": "nest build",
+    "start:dev": "nest start --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint \"{src,test}/**/*.ts\"",
+    "migrate": "typeorm-ts-node-commonjs migration:run -d src/data-source.ts",
+    "sync:catalog": "ts-node --transpile-only src/scripts/sync-catalog.cli.ts",
     "policy:sync": "agent-policy sync",
     "policy:check": "agent-policy sync --check",
     "policy:validate": "agent-policy validate"
   },
+  "dependencies": {
+    "@nestjs/common": "^10.3.0",
+    "@nestjs/core": "^10.3.0",
+    "@nestjs/platform-express": "^10.3.0",
+    "@nestjs/typeorm": "^10.0.2",
+    "cheerio": "^1.0.0-rc.12",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.20",
+    "zod": "^3.22.4"
+  },
   "devDependencies": {
-    "@47nation/agent-policy": "^0.1.0"
+    "@47nation/agent-policy": "^0.1.0",
+    "@nestjs/cli": "^10.3.0",
+    "@nestjs/testing": "^10.3.0",
+    "@testcontainers/postgresql": "^10.7.0",
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "playwright": "^1.41.0",
+    "testcontainers": "^10.7.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
   }
 }
