@@ -1,4 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { InjectDataSource } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { SetFactory } from '../factories/set.factory';
 import { CardFactory } from '../factories/card.factory';
@@ -29,7 +30,7 @@ export class CatalogSyncService {
   private readonly logger = new Logger(CatalogSyncService.name);
 
   constructor(
-    private readonly ds: DataSource,
+    @InjectDataSource() private readonly ds: DataSource,
     private readonly setFactory: SetFactory,
     private readonly cardFactory: CardFactory,
   ) {}

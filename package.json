@@ -35,6 +35,7 @@
     "@47nation/agent-policy": "^0.1.0",
     "@nestjs/cli": "^10.3.0",
     "@nestjs/testing": "^10.3.0",
+    "@swc/core": "^1.15.30",
     "@testcontainers/postgresql": "^10.7.0",
     "@types/node": "^20.11.0",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
@@ -44,6 +45,7 @@
     "testcontainers": "^10.7.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
+    "unplugin-swc": "^1.5.9",
     "vitest": "^1.2.0"
   }
 }
